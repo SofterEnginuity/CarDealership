@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dealership {
 
@@ -39,5 +40,22 @@ public class Dealership {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Vehicle> getVehiclesByPrice(double min, double max){
+        return null;
+    }
+
+    public List<Vehicle> getAllVehicles(){
+        return inventory;
+
+    }
+    public void addVehicle(Vehicle vehicle){
+        inventory.add(vehicle);
+
+    }
+
+    public void removeVehicle(Vehicle vehicle){
+        inventory.remove(vehicle);
     }
 }
