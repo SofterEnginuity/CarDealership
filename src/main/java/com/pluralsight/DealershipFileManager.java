@@ -18,5 +18,6 @@ public class DealershipFileManager {
             System.out.println("File not found: " + fileName);
             e.printStackTrace();
         }
-
+        return null;
     }
+}

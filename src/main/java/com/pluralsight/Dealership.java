@@ -45,6 +45,23 @@ public class Dealership {
     public List<Vehicle> getVehiclesByPrice(double min, double max){
         return null;
     }
+    public List<Vehicle> getVehiclesByMakeModel(double min, double max){
+        return null;
+    }
+    public List<Vehicle> getVehiclesByYear(double min, double max){
+        return null;
+    }
+    public List<Vehicle> getVehiclesByColor(double min, double max){
+        return null;
+    }public List<Vehicle> getVehiclesByMileage(double min, double max){
+        return null;
+    }public List<Vehicle> getVehiclesByType(double min, double max){
+        return null;
+    }
+
+
+
+
 
     public List<Vehicle> getAllVehicles(){
         return inventory;
@@ -58,4 +75,7 @@ public class Dealership {
     public void removeVehicle(Vehicle vehicle){
         inventory.remove(vehicle);
     }
+
+
+
 }
