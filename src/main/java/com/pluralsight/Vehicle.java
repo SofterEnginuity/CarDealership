@@ -7,18 +7,20 @@ public class Vehicle {
     private String model;
     private String vehicleType;
     private String color;
-    private int odometer;
+    private int mileage;
     private double price;
 
-    public Vehicle(int vin, int year, String make, String model, String vehicleType, String color, int odometer, double price) {
+    public Vehicle(int vin, int year, String make, String model, String vehicleType, String color, int mileage, double price) {
         this.vin = vin;
         this.year = year;
         this.make = make;
         this.model = model;
         this.vehicleType = vehicleType;
         this.color = color;
-        this.odometer = odometer;
+        this.mileage = mileage;
         this.price = price;
+
+
     }
 
     public int getVin() {
@@ -53,14 +55,6 @@ public class Vehicle {
         this.model = model;
     }
 
-    public String getVehicleType() {
-        return vehicleType;
-    }
-
-    public void setVehicleType(String vehicleType) {
-        this.vehicleType = vehicleType;
-    }
-
     public String getColor() {
         return color;
     }
@@ -69,12 +63,11 @@ public class Vehicle {
         this.color = color;
     }
 
-    public int getOdometer() {
-        return odometer;
+    public int getMileage(int mileage) {
+        return mileage;
     }
-
-    public void setOdometer(int odometer) {
-        this.odometer = odometer;
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
     }
 
     public double getPrice() {
@@ -84,6 +77,14 @@ public class Vehicle {
     public void setPrice(double price) {
         this.price = price;
     }
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
 
     @Override
     public String toString() {
@@ -94,7 +95,7 @@ public class Vehicle {
                 ", model='" + model + '\'' +
                 ", vehicleType='" + vehicleType + '\'' +
                 ", color='" + color + '\'' +
-                ", odometer=" + odometer +
+                ", mileage=" + mileage +
                 ", price=" + price;
     }
 }

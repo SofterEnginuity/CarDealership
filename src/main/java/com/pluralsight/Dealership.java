@@ -42,6 +42,14 @@ public class Dealership {
         this.phone = phone;
     }
 
+
+    public List<Vehicle> getAllVehicles(){
+        ArrayList<Vehicle> allVehicles = new ArrayList<>();
+        for (Vehicle vehicle : inventory){
+            System.out.println(vehicle);
+        }
+        return allVehicles;
+    }
     public List<Vehicle> getVehiclesByPrice(double min, double max){
         ArrayList<Vehicle> inPriceRange = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -58,8 +66,6 @@ public class Dealership {
             }
         } return vehiclesByMakeModel;
     }
-
-
     public List<Vehicle> getVehiclesByYear(int requestedYear){
         ArrayList<Vehicle> vehiclesByYear = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -68,8 +74,6 @@ public class Dealership {
             }
         } return vehiclesByYear;
     }
-
-
     public List<Vehicle> getVehiclesByColor(String requestedColor){
         ArrayList<Vehicle> vehiclesByColor = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -78,28 +82,52 @@ public class Dealership {
             }
         } return vehiclesByColor;
     }
-
-    public List<Vehicle> getAllVehicles(){
-        ArrayList<Vehicle> allVehicles = new ArrayList<>();
-        for (Vehicle vehicle : inventory){
-            System.out.println(vehicle);
+    public List<Vehicle> getVehiclesByMileage(int min, int max) {
+        ArrayList<Vehicle> vehiclesByMileage = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getMileage(min) >= min && vehicle.getMileage(max) <= max) {
+                vehiclesByMileage.add(vehicle);
             }
-        return allVehicles;
-}
+        }
+        return vehiclesByMileage;
+    }
+    public List<Vehicle> getVehiclesByType(int selection){
+        ArrayList<Vehicle> vehiclesByType = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            switch (selection) {
+                case 1: // Car
+                    if (vehicle.getVehicleType().equalsIgnoreCase("car")) {
+                        vehiclesByType.add(vehicle);
+                    }
+                    break;
+                case 2: // Truck
+                    if (vehicle.getVehicleType().equalsIgnoreCase("truck")) {
+                        vehiclesByType.add(vehicle);
+                    }
+                    break;
+                case 3: // SUV
+                    if (vehicle.getVehicleType().equalsIgnoreCase("SUV")) {
+                        vehiclesByType.add(vehicle);
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid selection.");
+                    break;
 
-    public List<Vehicle> getVehiclesByMileage(double min, double max){
-        return null;
-    }public List<Vehicle> getVehiclesByType(double min, double max){
-        return null;
+
+            }
+        }
+        return vehiclesByType;
     }
 
 
 
 
+public saveDealership(){
 
+}
     public void addVehicle(Vehicle vehicle){
         inventory.add(vehicle);
-
     }
 
     public void removeVehicle(Vehicle vehicle){

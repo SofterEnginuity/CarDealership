@@ -25,10 +25,9 @@ public class DealershipFileManager {
                 String model = parts[3];
                 String vehicleType = parts[4];
                 String color = parts[5];
-                int odometer = Integer.parseInt(parts[6]);
+                int mileage = Integer.parseInt(parts[6]);
                 double price = Double.parseDouble(parts[7]);
-
-                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, mileage, price);
                 dealership.addVehicle(vehicle);
             }
         } catch (IOException e) {
@@ -38,8 +37,9 @@ public class DealershipFileManager {
         return dealership;
     }
 
+public Dealership saveDealership(){
+    return null;
+    }
 
-//    public void getDealership{
-//        System.out.println("Getting Dealership info");
-//    }
+
 }
