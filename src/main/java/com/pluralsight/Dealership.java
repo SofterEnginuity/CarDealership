@@ -44,18 +44,15 @@ public class Dealership {
 
 
     public List<Vehicle> getAllVehicles(){
-        ArrayList<Vehicle> allVehicles = new ArrayList<>();
-        for (Vehicle vehicle : inventory){
-            System.out.println(vehicle);
-        }
-        return allVehicles;
+        return inventory;
     }
+
     public List<Vehicle> getVehiclesByPrice(double min, double max){
         ArrayList<Vehicle> inPriceRange = new ArrayList<>();
         for (Vehicle vehicle : inventory){
-          if(vehicle.getPrice() <= max && vehicle.getPrice() >= min){
-              inPriceRange.add(vehicle);
-          }
+            if(vehicle.getPrice() <= max && vehicle.getPrice() >= min){
+                inPriceRange.add(vehicle);
+            }
         } return inPriceRange;
     }
     public List<Vehicle> getVehiclesByMakeModel(String requestedMake, String requestedModel){
@@ -78,7 +75,7 @@ public class Dealership {
         ArrayList<Vehicle> vehiclesByColor = new ArrayList<>();
         for (Vehicle vehicle : inventory){
             if(requestedColor.equalsIgnoreCase(vehicle.getColor())){
-                  vehiclesByColor.add(vehicle);
+                vehiclesByColor.add(vehicle);
             }
         } return vehiclesByColor;
     }
@@ -123,9 +120,9 @@ public class Dealership {
 
 
 
-public saveDealership(){
-
-}
+//    public saveDealership(){
+//
+//    }
     public void addVehicle(Vehicle vehicle){
         inventory.add(vehicle);
     }

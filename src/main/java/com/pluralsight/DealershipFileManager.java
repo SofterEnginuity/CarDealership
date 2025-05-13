@@ -11,8 +11,7 @@ public class DealershipFileManager {
 
     public Dealership getDealership() {
         Dealership dealership = new Dealership("Pluralsight Motors", "123 Main St", "555-1234");
-
-        String fileName = "inventory.csv";
+        String fileName = "newInventory.csv";
         try (BufferedReader bufRead = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = bufRead.readLine()) != null) {
@@ -27,6 +26,7 @@ public class DealershipFileManager {
                 String color = parts[5];
                 int mileage = Integer.parseInt(parts[6]);
                 double price = Double.parseDouble(parts[7]);
+
                 Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, mileage, price);
                 dealership.addVehicle(vehicle);
             }
@@ -37,9 +37,6 @@ public class DealershipFileManager {
         return dealership;
     }
 
-public Dealership saveDealership(){
-    return null;
-    }
 
 
 }
