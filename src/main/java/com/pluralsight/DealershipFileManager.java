@@ -4,37 +4,39 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DealershipFileManager {
 
     public Dealership getDealership() {
+        Dealership dealership = new Dealership("Pluralsight Motors", "123 Main St", "555-1234");
+
         String fileName = "inventory.csv";
-
-        try {
-            FileReader fileReader = new FileReader(fileName);
-            BufferedReader bufRead = new BufferedReader(fileReader);
-
-            String line = bufRead.readLine();
-            System.out.println("First line: " + line);
-
+        try (BufferedReader bufRead = new BufferedReader(new FileReader(fileName))) {
+            String line;
             while ((line = bufRead.readLine()) != null) {
-                System.out.println(line);
-            }  // ✅ CLOSE YOUR WHILE LOOP
+                String[] parts = line.split("\\|");
+                if (parts.length < 8) continue;
 
-            bufRead.close();  // ✅ OUTSIDE the while loop
+                int vin = Integer.parseInt(parts[0]);
+                int year = Integer.parseInt(parts[1]);
+                String make = parts[2];
+                String model = parts[3];
+                String vehicleType = parts[4];
+                String color = parts[5];
+                int odometer = Integer.parseInt(parts[6]);
+                double price = Double.parseDouble(parts[7]);
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found!");
-            e.printStackTrace();
+                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                dealership.addVehicle(vehicle);
+            }
         } catch (IOException e) {
-            System.out.println("Something went wrong while reading the file.");
-            e.printStackTrace();
+            System.out.println("Error reading file: " + e.getMessage());
         }
 
-        return null;
+        return dealership;
     }
-
 
 
 //    public void getDealership{

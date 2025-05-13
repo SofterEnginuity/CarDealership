@@ -13,9 +13,9 @@ public class Dealership {
 
 
     public Dealership(String name, String address, String phone) {
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
+        this.name = "";
+        this.address = "";
+        this.phone = "";
         inventory = new ArrayList<>();
     }
     public String getName() {
@@ -58,6 +58,8 @@ public class Dealership {
             }
         } return vehiclesByMakeModel;
     }
+
+
     public List<Vehicle> getVehiclesByYear(int requestedYear){
         ArrayList<Vehicle> vehiclesByYear = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -82,8 +84,7 @@ public class Dealership {
         for (Vehicle vehicle : inventory){
             System.out.println(vehicle);
             }
-//        return allVehicles;
-        return inventory;
+        return allVehicles;
 }
 
     public List<Vehicle> getVehiclesByMileage(double min, double max){
