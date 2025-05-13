@@ -43,17 +43,44 @@ public class Dealership {
     }
 
     public List<Vehicle> getVehiclesByPrice(double min, double max){
-        return null;
+        ArrayList<Vehicle> inPriceRange = new ArrayList<>();
+        for (Vehicle vehicle : inventory){
+          if(vehicle.getPrice() <= max && vehicle.getPrice() >= min){
+              inPriceRange.add(vehicle);
+          }
+        } return inPriceRange;
     }
-    public List<Vehicle> getVehiclesByMakeModel(double min, double max){
-        return null;
+    public List<Vehicle> getVehiclesByMakeModel(String requestedMake, String requestedModel){
+        ArrayList<Vehicle> vehiclesByMakeModel = new ArrayList<>();
+        for (Vehicle vehicle : inventory){
+            if(vehicle.getMake().equalsIgnoreCase(requestedMake) && vehicle.getModel().equalsIgnoreCase(requestedModel)){
+                vehiclesByMakeModel.add(vehicle);
+            }
+        } return vehiclesByMakeModel;
     }
-    public List<Vehicle> getVehiclesByYear(double min, double max){
-        return null;
+    public List<Vehicle> getVehiclesByYear(int requestedYear){
+        ArrayList<Vehicle> vehiclesByYear = new ArrayList<>();
+        for (Vehicle vehicle : inventory){
+            if(vehicle.getYear() == (requestedYear)){
+                vehiclesByYear.add(vehicle);
+            }
+        } return vehiclesByYear;
     }
+
+
     public List<Vehicle> getVehiclesByColor(double min, double max){
         return null;
-    }public List<Vehicle> getVehiclesByMileage(double min, double max){
+    }
+
+    public List<Vehicle> getAllVehicles(){
+        ArrayList<Vehicle> allVehicles = new ArrayList<>();
+        for (Vehicle vehicle : inventory){
+            System.out.println(vehicle);
+            }
+        return allVehicles;
+}
+
+    public List<Vehicle> getVehiclesByMileage(double min, double max){
         return null;
     }public List<Vehicle> getVehiclesByType(double min, double max){
         return null;
@@ -63,7 +90,7 @@ public class Dealership {
 
 
 
-    public List<Vehicle> getAllVehicles(){
+    public List<Vehicle> getAllVehicles(ArrayList<Vehicle> vehicles){
         return inventory;
 
     }
