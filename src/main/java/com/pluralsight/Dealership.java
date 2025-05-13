@@ -68,8 +68,13 @@ public class Dealership {
     }
 
 
-    public List<Vehicle> getVehiclesByColor(double min, double max){
-        return null;
+    public List<Vehicle> getVehiclesByColor(String requestedColor){
+        ArrayList<Vehicle> vehiclesByColor = new ArrayList<>();
+        for (Vehicle vehicle : inventory){
+            if(requestedColor.equalsIgnoreCase(vehicle.getColor())){
+                  vehiclesByColor.add(vehicle);
+            }
+        } return vehiclesByColor;
     }
 
     public List<Vehicle> getAllVehicles(){
@@ -77,7 +82,8 @@ public class Dealership {
         for (Vehicle vehicle : inventory){
             System.out.println(vehicle);
             }
-        return allVehicles;
+//        return allVehicles;
+        return inventory;
 }
 
     public List<Vehicle> getVehiclesByMileage(double min, double max){
@@ -90,10 +96,6 @@ public class Dealership {
 
 
 
-    public List<Vehicle> getAllVehicles(ArrayList<Vehicle> vehicles){
-        return inventory;
-
-    }
     public void addVehicle(Vehicle vehicle){
         inventory.add(vehicle);
 

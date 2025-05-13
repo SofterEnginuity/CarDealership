@@ -8,8 +8,8 @@ public class UserInterface {
     private Scanner scanner = new Scanner(System.in);
     private Dealership dealership;
 
-    public void display(){
-        init();
+    public void display() {
+//        init(); // supposed to have right here
         System.out.println("Please make a selection: ");
 
 //        System.out.println("1 - Display All Vehicles");
@@ -24,9 +24,9 @@ public class UserInterface {
 
         int selection = scanner.nextInt();
         switch (selection) {
-//            case 1:
-////               getDealership();
-//               break;
+            case 1:
+                processGetAllVehiclesRequest();
+                break;
             case 2:
                 processGetByPriceRequest();
                 break;
@@ -38,24 +38,20 @@ public class UserInterface {
                 break;
 
             case 5:
-                processGetAllVehiclesRequest();
                 break;
             case 6:
-//                processGetAllVehicles();
-//                break;
+                processGetByColorRequest();
+                break;
 //            case 7:
 //                processGetByMileageRequest();
 //                break;
 //            case 8:
 //                processGetByVehicleTypeRequest();
 //                break;
-            case 9:
-                processGetAllVehiclesRequest();
-                break;
-//            case 10:
+//            case 9:
 //                processAddVehicleRequest();
 //                break;
-//            case 11:
+//            case 10:
 //                processRemoveVehicleRequest();
 //                break;
             default:
@@ -64,8 +60,8 @@ public class UserInterface {
         }
 
 
-
     }
+
     public void processGetByPriceRequest() {
         System.out.println("Please enter a minimum price:");
         double min = scanner.nextDouble();
@@ -73,6 +69,7 @@ public class UserInterface {
         System.out.println("Please enter a maximum price:");
         double max = scanner.nextDouble();
 
+        System.out.println("Should display all vehicles in a price range");
         List<Vehicle> inPriceRange = dealership.getVehiclesByPrice(min, max);
 
         if (inPriceRange.isEmpty()) {
@@ -85,7 +82,7 @@ public class UserInterface {
         }
     }
 
-    public void processGetByMakeModelRequest(){
+    public void processGetByMakeModelRequest() {
         System.out.println("Please enter the Make of a Vehicle you would like to search:");
         double requestedMake = scanner.nextDouble();
         System.out.println("Please enter the Model of a Vehicle you would like to search:");
@@ -103,7 +100,8 @@ public class UserInterface {
         }
 
     }
-    public void processGetByYearRequest(){
+
+    public void processGetByYearRequest() {
         System.out.println("Please enter the Year of a Vehicle you would like to search:");
         int requestedYear = scanner.nextInt();
 
@@ -114,39 +112,68 @@ public class UserInterface {
         } else {
             System.out.println("Here are all of the vehicles make in " + requestedYear + " found in our system:");
             for (Vehicle vehicle : vehiclesByYear) {
-                    System.out.println(vehicle);
-                    System.out.println("Match");
+                System.out.println(vehicle);
+                System.out.println("Match");
             }
         }
 
     }
-    public void processGetByColorRequest(){
 
-    }
-    public void processGetByMileageRequest(){
-
-    }public void processGetByVehicleTypeRequest(){
-
-    }
-    public void processGetAllVehiclesRequest(){
-
-    }
-    public void processAddVehicleRequest(){
-    }
-    public void processRemoveVehicleRequest(){
+    public void processGetAllVehiclesRequest() {
 
     }
 
+    public void processGetByColorRequest() {
+        System.out.println("Please enter the Color of Vehicle you would like to search:");
+        String requestedColor = scanner.nextLine();
+
+        List<Vehicle> vehiclesByColor = dealership.getVehiclesByColor(requestedColor);
+        if (vehiclesByColor.isEmpty()) {
+            System.out.println("No results found.");
+        } else {
+            System.out.println("Here are all of the  " + requestedColor + " vehicles found in our system:");
+            for (Vehicle vehicle : vehiclesByColor) {
+                System.out.println(vehicle);
+                System.out.println("Match");
+            }
+        }
+    }
+
+    public void processGetByMileageRequest() {
+
+    }
+
+    public void processGetByVehicleTypeRequest() {
+
+    }
+
+    public void processAddVehicleRequest() {
+    }
+
+    public void processRemoveVehicleRequest() {
+
+    }
 
 
-    private void init(){
+    private void init() {
         DealershipFileManager fileManager = new DealershipFileManager();
         this.dealership = fileManager.getDealership();
 
     }
-    public void displayVehicles(){
-        System.out.println("Complete");
-//universal method to pass in the ones above?
 
+    public void displayVehicles(List<Vehicle> vehicles) {
+        if (vehicles.isEmpty()) {
+            System.out.println("No results found.");
+        } else {
+            for (Vehicle vehicle : vehicles) {
+                System.out.println(vehicle);
+            }
+        }
     }
+
+
+
+
+
 }
+
