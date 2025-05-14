@@ -63,7 +63,7 @@ public class Vehicle {
         this.color = color;
     }
 
-    public int getMileage(int mileage) {
+    public int getMileage() {
         return mileage;
     }
     public void setMileage(int mileage) {
@@ -75,7 +75,7 @@ public class Vehicle {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price = getPrice();
     }
     public String getVehicleType() {
         return vehicleType;
@@ -84,6 +84,7 @@ public class Vehicle {
     public void setVehicleType(String vehicleType) {
         this.vehicleType = vehicleType;
     }
+
 
 
     @Override

@@ -14,7 +14,7 @@ public class UserInterface {
 
     public void display() {
         init();
-        int selection = -1; // Initialize to a value that is NOT 0
+        int selection = -1;
 
         do {
             System.out.println("\nPlease make a selection: ");
@@ -30,13 +30,13 @@ public class UserInterface {
             System.out.println("10 - Filter by VIN");
             System.out.println("0 - Exit");
 
-            // Safely read user input
+
             if (scanner.hasNextInt()) {
                 selection = scanner.nextInt();
-                scanner.nextLine(); // consume newline
+                scanner.nextLine();
             } else {
                 System.out.println("Invalid input. Please enter a number.");
-                scanner.nextLine(); // consume invalid input
+                scanner.nextLine(); //
                 continue;
             }
 
@@ -80,6 +80,12 @@ public class UserInterface {
 
         } while (selection != 0);
     }
+
+    private void init() {
+        DealershipFileManager fileManager = new DealershipFileManager();
+        this.dealership = fileManager.getDealership();
+    }
+
     public void displayVehicles(List<Vehicle> vehicles) {
         if (vehicles.isEmpty()) {
             System.out.println("No results found.");
@@ -90,9 +96,11 @@ public class UserInterface {
 
         }
     }
+
     public void processGetAllVehiclesRequest() {
         displayVehicles(dealership.getAllVehicles());
     }
+
     public void processGetVehiclesByVin() {
         System.out.println("Please enter a vin to search");
         int vin = scanner.nextInt();
@@ -101,6 +109,7 @@ public class UserInterface {
         displayVehicles(dealership.getVehiclesByVin(vin));
 
     }
+
     public void processGetByPriceRequest() {
         System.out.println("Please enter a minimum price:");
         double min = scanner.nextDouble();
@@ -109,6 +118,7 @@ public class UserInterface {
         displayVehicles(dealership.getVehiclesByPrice(min, max));
 
     }
+
     public void processGetByMakeModelRequest() {
         System.out.println("Please enter the Make of a Vehicle you would like to search:");
         String requestedMake = scanner.nextLine();
@@ -120,26 +130,31 @@ public class UserInterface {
 
 
     }
+
     public void processGetByYearRequest() {
         System.out.println("Please enter the Year of a Vehicle you would like to search:");
         int requestedYear = scanner.nextInt();
         List<Vehicle> vehiclesByYear = dealership.getVehiclesByYear(requestedYear);
         displayVehicles(dealership.getVehiclesByYear(requestedYear));
     }
+
     public void processGetByColorRequest() {
         System.out.println("Please enter the Color of Vehicle you would like to search:");
         String requestedColor = scanner.nextLine();
         List<Vehicle> vehiclesByColor = dealership.getVehiclesByColor(requestedColor);
-        displayVehicles(dealership.getVehiclesByColor(requestedColor));
+        displayVehicles(vehiclesByColor);
     }
+
+    //not using vehiclesByMileage?? but also using it??
     public void processGetByMileageRequest() {
         System.out.println("Please enter the minimum Mileage");
         int min = scanner.nextInt();
         System.out.println("Please enter the maximum Mileage:");
         int max = scanner.nextInt();
         List<Vehicle> vehiclesByMileage = dealership.getVehiclesByMileage(min, max);
-        displayVehicles(dealership.getVehiclesByMileage(min, max));
+        displayVehicles(vehiclesByMileage);
     }
+
     public void processGetByVehicleTypeRequest() {
         System.out.println("Please select a vehicle type");
         System.out.println("1 - Car");
@@ -166,6 +181,7 @@ public class UserInterface {
         displayVehicles(vehiclesByType);
 
     }
+
     public void processAddVehicleRequest() {
 
         System.out.println("Please enter the Vin Number");
@@ -189,53 +205,34 @@ public class UserInterface {
         String newVehicleType = scanner.nextLine();
         scanner.nextLine();
 
-        System.out.println(year + " " + make + " " +  model + " added to the dealership");
-        Vehicle vehicle = new Vehicle(vin, year, make, model, newVehicleType, color, mileage, price);
-
+        Vehicle vehicle = new Vehicle(vin,year,make,model,newVehicleType,color,mileage,price);
+        System.out.println(year + " " + make + " " + model + " added to dealership");
         dealership.addVehicle(vehicle);
-        try (FileWriter fw = new FileWriter("newInventory.csv", true);
-             BufferedWriter bw = new BufferedWriter(fw);
-             PrintWriter out = new PrintWriter(bw)) {
-
-            out.println(vin + "|" + year + "|" + make + "|" + model + "|" +
-                    newVehicleType + "|" + color + "|" + mileage + "|" + price);
-        } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
-        }
-
-
-
-
+        DealershipFileManager.saveDealership(dealership);
     }
-    public void processRemoveVehicleRequest() {
-        processGetAllVehiclesRequest();
 
+    public void processRemoveVehicleRequest() {
         System.out.println("Please enter the Vin Number of the vehicle to remove from inventory:");
         int vinToRemove = scanner.nextInt();
 
         Vehicle vehicleToRemove = null;
         for (Vehicle vehicle : dealership.getAllVehicles()) {
             if (vehicle.getVin() == vinToRemove) {
+
+                dealership.removeVehicle(vehicleToRemove);
                 vehicleToRemove = vehicle;
                 break;
             }
         }
 
         if (vehicleToRemove != null) {
-
-            dealership.getAllVehicles().remove(vehicleToRemove);
-//            dealership.saveDealership();
-
             System.out.println("Vehicle with VIN " + vinToRemove + " removed from the dealership.");
         } else {
             System.out.println("No vehicle found with VIN " + vinToRemove);
         }
-    }
-    private void init() {
-        DealershipFileManager fileManager = new DealershipFileManager();
-        this.dealership = fileManager.getDealership();
 
     }
+
 
 }
 
