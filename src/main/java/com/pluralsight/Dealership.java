@@ -92,45 +92,34 @@ public class Dealership {
         }
         return vehiclesByMileage;
     }
-    public List<Vehicle> getVehiclesByType(int selection){
-        ArrayList<Vehicle> vehiclesByType = new ArrayList<>();
+
+    public List<Vehicle> getVehiclesByVin(int vinToSearch) {
+        List<Vehicle> vehiclesByVin = new ArrayList<>();
         for (Vehicle vehicle : inventory) {
-            switch (selection) {
-                case 1: // Car
-                    if (vehicle.getVehicleType().equalsIgnoreCase("car")) {
-                        vehiclesByType.add(vehicle);
-                    }
-                    break;
-                case 2: // Truck
-                    if (vehicle.getVehicleType().equalsIgnoreCase("truck")) {
-                        vehiclesByType.add(vehicle);
-                    }
-                    break;
-                case 3: // SUV
-                    if (vehicle.getVehicleType().equalsIgnoreCase("SUV")) {
-                        vehiclesByType.add(vehicle);
-                    }
-                    break;
-                default:
-                    System.out.println("Invalid selection.");
-                    break;
+            if (vehicle.getVin() == vinToSearch) {
+                vehiclesByVin.add(vehicle);
+            }
+        }
+        return vehiclesByVin;
+    }
 
-
+    public List<Vehicle> getVehiclesByType(String vehicleType) {
+        List<Vehicle> vehiclesByType = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVehicleType().equalsIgnoreCase(vehicleType)) {
+                vehiclesByType.add(vehicle);
             }
         }
         return vehiclesByType;
     }
 
+
+
     public void addVehicle(Vehicle vehicle){
         inventory.add(vehicle);
     }
-
-
-
     public void removeVehicle(Vehicle vehicle){
         inventory.remove(vehicle);
     }
-
-
 
 }
