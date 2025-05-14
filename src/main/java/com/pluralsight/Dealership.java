@@ -55,6 +55,7 @@ public class Dealership {
             }
         } return inPriceRange;
     }
+
     public List<Vehicle> getVehiclesByMakeModel(String requestedMake, String requestedModel){
         ArrayList<Vehicle> vehiclesByMakeModel = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -63,6 +64,7 @@ public class Dealership {
             }
         } return vehiclesByMakeModel;
     }
+
     public List<Vehicle> getVehiclesByYear(int requestedYear){
         ArrayList<Vehicle> vehiclesByYear = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -71,6 +73,7 @@ public class Dealership {
             }
         } return vehiclesByYear;
     }
+
     public List<Vehicle> getVehiclesByColor(String requestedColor){
         ArrayList<Vehicle> vehiclesByColor = new ArrayList<>();
         for (Vehicle vehicle : inventory){
@@ -79,6 +82,7 @@ public class Dealership {
             }
         } return vehiclesByColor;
     }
+
     public List<Vehicle> getVehiclesByMileage(int min, int max) {
         ArrayList<Vehicle> vehiclesByMileage = new ArrayList<>();
         for (Vehicle vehicle : inventory) {
@@ -117,15 +121,11 @@ public class Dealership {
         return vehiclesByType;
     }
 
-
-
-
-//    public saveDealership(){
-//
-//    }
     public void addVehicle(Vehicle vehicle){
         inventory.add(vehicle);
     }
+
+
 
     public void removeVehicle(Vehicle vehicle){
         inventory.remove(vehicle);

@@ -1,7 +1,5 @@
 package com.pluralsight;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -93,15 +91,14 @@ public class UserInterface {
 //
 //    }
 
+
     public void processGetByPriceRequest() {
         System.out.println("Please enter a minimum price:");
         double min = scanner.nextDouble();
-
         System.out.println("Please enter a maximum price:");
         double max = scanner.nextDouble();
-        List<Vehicle> inPriceRange = dealership.getVehiclesByPrice(min, max);
         displayVehicles(dealership.getVehiclesByPrice(min, max));
-//
+
     }
 
     public void processGetByMakeModelRequest() {
@@ -191,6 +188,8 @@ public class UserInterface {
 
 
     }
+
+
 
 //    public void processRemoveVehicleRequest() {
 //        processGetAllVehiclesRequest();
