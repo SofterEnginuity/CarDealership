@@ -211,26 +211,24 @@ public class UserInterface {
     }
 
     public void processRemoveVehicleRequest() {
-        System.out.println("Please enter the Vin Number of the vehicle to remove from inventory:");
+        System.out.println("Please enter the VIN number of the vehicle to remove from inventory:");
         int vinToRemove = scanner.nextInt();
-
         Vehicle vehicleToRemove = null;
-        for (Vehicle vehicle : dealership.getAllVehicles()) {
-            if (vehicle.getVin() == vinToRemove) {
-
-                dealership.removeVehicle(vehicleToRemove);
-                vehicleToRemove = vehicle;
+        for (Vehicle v : dealership.getAllVehicles()) {
+            if (v.getVin() == vinToRemove) {
+                vehicleToRemove = v;
                 break;
             }
         }
-
         if (vehicleToRemove != null) {
-            System.out.println("Vehicle with VIN " + vinToRemove + " removed from the dealership.");
+            dealership.removeVehicle(vehicleToRemove);
+            System.out.println(vehicleToRemove.getYear() + " " + vehicleToRemove.getMake() + " " + vehicleToRemove.getModel() + " removed from dealership.");
+            DealershipFileManager.saveDealership(dealership);
         } else {
-            System.out.println("No vehicle found with VIN " + vinToRemove);
+            System.out.println("Vehicle with VIN " + vinToRemove + " not found.");
         }
-
     }
+
 
 
 }
