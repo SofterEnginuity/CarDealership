@@ -19,15 +19,15 @@ public class UserInterface {
         do {
             System.out.println("\nPlease make a selection: ");
             System.out.println("1 - Display All Vehicles");
-            System.out.println("2 - Filter by Price");
-            System.out.println("3 - Filter by Make and Model");
-            System.out.println("4 - Filter by Year");
-            System.out.println("5 - Filter by Color");
-            System.out.println("6 - Filter by Mileage");
-            System.out.println("7 - Filter by Vehicle Type");
-            System.out.println("8 - Add a Vehicle");
-            System.out.println("9 - Remove a Vehicle");
-            System.out.println("10 - Filter by VIN");
+            System.out.println("2 - Filter by VIN");
+            System.out.println("3 - Filter by Price");
+            System.out.println("4 - Filter by Make and Model");
+            System.out.println("5 - Filter by Year");
+            System.out.println("6 - Filter by Color");
+            System.out.println("7 - Filter by Mileage");
+            System.out.println("8 - Filter by Vehicle Type");
+            System.out.println("9 - Add a Vehicle");
+            System.out.println("10 - Remove a Vehicle");
             System.out.println("0 - Exit");
 
 
@@ -45,31 +45,32 @@ public class UserInterface {
                     processGetAllVehiclesRequest();
                     break;
                 case 2:
-                    processGetByPriceRequest();
+                    processGetVehiclesByVin();
                     break;
-                case 3:
+
+                case 3: processGetByPriceRequest();
+                    break;
+
+                case 4:
                     processGetByMakeModelRequest();
                     break;
-                case 4:
+                case 5:
                     processGetByYearRequest();
                     break;
-                case 5:
+                case 6:
                     processGetByColorRequest();
                     break;
-                case 6:
+                case 7:
                     processGetByMileageRequest();
                     break;
-                case 7:
+                case 8:
                     processGetByVehicleTypeRequest();
                     break;
-                case 8:
+                case 9:
                     processAddVehicleRequest();
                     break;
-                case 9:
-                    processRemoveVehicleRequest();
-                    break;
                 case 10:
-                    processGetVehiclesByVin();
+                    processRemoveVehicleRequest();
                     break;
                 case 0:
                     System.out.println("Thank you for stopping by my dealership");
@@ -85,7 +86,6 @@ public class UserInterface {
         DealershipFileManager fileManager = new DealershipFileManager();
         this.dealership = fileManager.getDealership();
     }
-
     public void displayVehicles(List<Vehicle> vehicles) {
         if (vehicles.isEmpty()) {
             System.out.println("No results found.");
@@ -95,11 +95,9 @@ public class UserInterface {
             }
         }
     }
-
     public void processGetAllVehiclesRequest() {
         displayVehicles(dealership.getAllVehicles());
     }
-
     public void processGetVehiclesByVin() {
         System.out.println("Please enter a vin to search");
         int vin = scanner.nextInt();
@@ -174,7 +172,6 @@ public class UserInterface {
         displayVehicles(vehiclesByType);
 
     }
-
     public void processAddVehicleRequest() {
 
         System.out.println("Please enter the Vin Number");
