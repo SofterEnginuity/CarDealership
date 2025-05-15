@@ -93,7 +93,6 @@ public class UserInterface {
             for (Vehicle vehicle : vehicles) {
                 System.out.println(vehicle);
             }
-
         }
     }
 
@@ -145,7 +144,7 @@ public class UserInterface {
         displayVehicles(vehiclesByColor);
     }
 
-    //not using vehiclesByMileage?? but also using it??
+
     public void processGetByMileageRequest() {
         System.out.println("Please enter the minimum Mileage");
         int min = scanner.nextInt();
