@@ -103,12 +103,10 @@ public class UserInterface {
     public void processGetVehiclesByVin() {
         System.out.println("Please enter a vin to search");
         int vin = scanner.nextInt();
-
         List<Vehicle> vehicleByVin = dealership.getVehiclesByVin(vin);
         displayVehicles(dealership.getVehiclesByVin(vin));
 
     }
-
     public void processGetByPriceRequest() {
         System.out.println("Please enter a minimum price:");
         double min = scanner.nextDouble();
@@ -117,7 +115,6 @@ public class UserInterface {
         displayVehicles(dealership.getVehiclesByPrice(min, max));
 
     }
-
     public void processGetByMakeModelRequest() {
         System.out.println("Please enter the Make of a Vehicle you would like to search:");
         String requestedMake = scanner.nextLine();
@@ -129,22 +126,20 @@ public class UserInterface {
 
 
     }
-
     public void processGetByYearRequest() {
-        System.out.println("Please enter the Year of a Vehicle you would like to search:");
-        int requestedYear = scanner.nextInt();
-        List<Vehicle> vehiclesByYear = dealership.getVehiclesByYear(requestedYear);
-        displayVehicles(dealership.getVehiclesByYear(requestedYear));
+        System.out.println("Please enter minimum year you would like to search by:");
+        int min = scanner.nextInt();
+        System.out.println("Please enter maximum year you would like to search by:");
+        int max = scanner.nextInt();
+        List<Vehicle> vehiclesByYear = dealership.getVehiclesByYear(min, max);
+        displayVehicles(dealership.getVehiclesByYear(min,max));
     }
-
     public void processGetByColorRequest() {
         System.out.println("Please enter the Color of Vehicle you would like to search:");
         String requestedColor = scanner.nextLine();
         List<Vehicle> vehiclesByColor = dealership.getVehiclesByColor(requestedColor);
         displayVehicles(vehiclesByColor);
     }
-
-
     public void processGetByMileageRequest() {
         System.out.println("Please enter the minimum Mileage");
         int min = scanner.nextInt();
@@ -153,7 +148,6 @@ public class UserInterface {
         List<Vehicle> vehiclesByMileage = dealership.getVehiclesByMileage(min, max);
         displayVehicles(vehiclesByMileage);
     }
-
     public void processGetByVehicleTypeRequest() {
         System.out.println("Please select a vehicle type");
         System.out.println("1 - Car");
@@ -209,7 +203,6 @@ public class UserInterface {
         dealership.addVehicle(vehicle);
         DealershipFileManager.saveDealership(dealership);
     }
-
     public void processRemoveVehicleRequest() {
         System.out.println("Please enter the VIN number of the vehicle to remove from inventory:");
         int vinToRemove = scanner.nextInt();
@@ -228,8 +221,6 @@ public class UserInterface {
             System.out.println("Vehicle with VIN " + vinToRemove + " not found.");
         }
     }
-
-
 
 }
 
